@@ -1,0 +1,68 @@
+.signup form {
+  margin: auto;
+  max-width: 350px;
+  border: 2px solid lightgrey;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.signup form h2 {
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.signup form .formField + .formField {
+  margin-top: 0.5rem;
+}
+
+.signup form .formField .error {
+  font-size: 1rem;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.signup form .labelWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.signup form .labelWrapper label {
+  font-size: 0.75rem;
+  padding: 0 0.5rem;
+}
+
+.signup form .labelWrapper hr {
+  flex-grow: 1;
+  margin: auto;
+}
+
+.signup form input {
+  width: 96.5%;
+  padding: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.signup form .btn {
+  display: block;
+  margin: 1rem auto 0.5rem;
+  width: 50%;
+}
+
+.signup form .btn:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.signup form a.btn {
+  font-weight: 600;
+  color: white;
+  letter-spacing: normal;
+  font-size: 0.9rem;
+  background-color: #1d9bf0;
+  padding: 0.3rem 0.1rem 0.4rem;
+  text-decoration: none;
+}
+.signup form a.btn:hover {
+  opacity: 0.8;
+}

@@ -1,0 +1,13 @@
+form.addPost {
+  max-width: 500px;
+  margin: auto;
+  padding: 0.5rem;
+  border: 2px solid lightgrey;
+  border-radius: 5px;
+}
+
+form.addPost textarea {
+  width: 99%;
+  border: 1px solid black;
+  resize: vertical;
+}

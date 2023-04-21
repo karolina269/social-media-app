@@ -1,0 +1,38 @@
+.login form {
+  margin: auto;
+  max-width: 350px;
+  border: 2px solid lightgrey;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.login form h2.error {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.login form .labelWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.login form .labelWrapper label {
+  font-size: 0.75rem;
+  padding: 0 0.5rem;
+}
+
+.login form .labelWrapper hr {
+  flex-grow: 1;
+  margin: auto;
+}
+
+.login form input {
+  width: 96.5%;
+  padding: 0.25rem;
+  margin: 0.25rem 0;
+}
+
+.login form button {
+  margin: 0.5rem auto;
+  width: 50%;
+}

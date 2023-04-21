@@ -1,0 +1,89 @@
+.post {
+  max-width: 500px;
+  margin: 0.5rem auto 0;
+  padding: 0.5rem;
+  border: 2px solid lightgrey;
+  border-radius: 5px;
+}
+
+.post .postHeading {
+  display: inline-block;
+  height: 50px;
+}
+
+.post .postHeading .avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.post .postHeading .postDetails {
+  display: inline-block;
+  padding: 0 0.5rem;
+  position: relative;
+  top: -0.75rem;
+}
+
+.post .postHeading .postDetails .postAuthor {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  margin: 0;
+}
+
+.post .postHeading .postDetails .postTime {
+  font-size: 0.75rem;
+  color: grey;
+  margin: 0;
+}
+
+.postContent {
+  margin-top: 1rem;
+}
+
+.post .postOptions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.post .postOptions .likesCounter {
+  font-weight: 600;
+  color: #404040;
+  background-color: lightgray;
+  border-radius: 50%;
+  text-align: center;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+}
+
+.post .deleteConfirm {
+  position: fixed;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.post .deleteConfirm p {
+  font-weight: 600;
+}
+
+.post .deleteConfirm button.yes {
+  background-color: green;
+  display: inline-block;
+  margin: 0 0.25rem;
+}
+
+.post .deleteConfirm button.cancel {
+  background-color: red;
+  display: inline-block;
+  margin: 0 0.25rem;
+}

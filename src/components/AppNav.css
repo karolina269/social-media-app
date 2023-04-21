@@ -1,0 +1,22 @@
+.mainNav {
+  padding: 0.5rem 0;
+}
+.mainNav ul {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+.mainNav ul li a.btn {
+  font-weight: 600;
+  padding: 0.5rem 0.85rem 0.75rem;
+  text-decoration: none;
+}
+.mainNav ul li a.btn:hover {
+  background: #e3e3e3;
+}
+h1 {
+  font-size: 1rem;
+  margin: 0 auto;
+}
