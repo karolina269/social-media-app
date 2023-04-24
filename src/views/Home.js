@@ -35,9 +35,23 @@ const Home = (props) => {
       .catch((error) => console.log(error));
   };
 
+  const onScroll = () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+    if (scrollTop + clientHeight >= scrollHeight) {
+      getMorePosts();
+    }
+  };
+
   useEffect(() => {
     getLatestPosts();
   }, [props.user]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [posts]);
 
   return (
     <div className="home">
