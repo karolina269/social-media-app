@@ -10,7 +10,6 @@ const Follow = (props) => {
       .post("https://akademia108.pl/api/social-app/follows/recommendations")
       .then((res) => {
         setRecommendations(res.data);
-        console.log(res.data);
       })
       .catch((error) => console.log(error));
   };

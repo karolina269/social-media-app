@@ -9,6 +9,15 @@ const Post = (props) => {
 
   const [didUserLike, setDidUserLike] = useState(props.post.likes.filter((like) => like.username === props.user?.username).length !== 0);
 
+  const unfollow = (id) => {
+    axios
+      .post("https://akademia108.pl/api/social-app/follows/disfollow", { leader_id: id })
+      .then(() => {
+        props.getLatestPosts();
+      })
+      .catch((error) => console.log(error));
+  };
+
   const deletePost = (id) => {
     axios
       .post("https://akademia108.pl/api/social-app/post/delete", { post_id: id })
@@ -25,15 +34,6 @@ const Post = (props) => {
       setLikesCounter(likesCounter + (isLiked ? -1 : 1));
       setDidUserLike(!isLiked);
     });
-  };
-
-  const unfollow = (id) => {
-    axios
-      .post("https://akademia108.pl/api/social-app/follows/disfollow", { leader_id: id })
-      .then(() => {
-        props.getLatestPosts();
-      })
-      .catch((error) => console.log(error));
   };
 
   return (

@@ -47,6 +47,13 @@ const AppNav = (props) => {
         )}
         {props.user && (
           <li>
+            <Link className="btn" to="/allfollows">
+              All Follows
+            </Link>
+          </li>
+        )}
+        {props.user && (
+          <li>
             <Link className="btn" to="/" onClick={handleLogout}>
               Logout
             </Link>
