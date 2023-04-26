@@ -9,8 +9,8 @@ const AllFollows = () => {
 
   const [displayed, setDisplayed] = useState([]);
 
-  const reducer = (state, action) => {
-    if (action.event.target.classList.contains("disabled")) {
+  const sliderReducer = (state, action) => {
+    if (action.disabled) {
       return { count: state.count };
     }
     switch (action.type) {
@@ -25,7 +25,7 @@ const AllFollows = () => {
     }
   };
 
-  const [state, dispatch] = useReducer(reducer, { count: 0 });
+  const [state, dispatch] = useReducer(sliderReducer, { count: 0 });
 
   const getAllFollows = () => {
     axios
@@ -64,7 +64,7 @@ const AllFollows = () => {
         src={ArrowBack}
         alt="arrow back"
         className={"arrow" + (state.count === 0 ? " disabled" : "")}
-        onClick={(e) => dispatch({ type: "back", event: e })}></img>
+        onClick={() => dispatch({ type: "back", disabled: state.count === 0 })}></img>
       {displayed.map((user) => {
         return (
           <div className="followedUser" key={user.id}>
@@ -81,7 +81,7 @@ const AllFollows = () => {
         alt="arrow forward"
         className={"arrow" + (state.count + 3 === followed.length || followed.length < 4 ? " disabled" : "")}
         id="forward"
-        onClick={(e) => dispatch({ type: "forward", event: e })}></img>
+        onClick={() => dispatch({ type: "forward", disabled: state.count + 3 === followed.length || followed.length < 4 })}></img>
     </main>
   );
 };
