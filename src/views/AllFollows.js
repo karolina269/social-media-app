@@ -4,43 +4,57 @@ import "./AllFollows.css";
 import ArrowBack from "../img/arrow_back.png";
 import ArrowForward from "../img/arrow_forward.png";
 
+const sliderReducer = (state, action) => {
+  if (action.disabled) {
+    return { state };
+  } else {
+    let displayedList = [];
+    switch (action.type) {
+      case "init": {
+        for (let i = 0; i < 3; i++) {
+          if (action.payload[i]) {
+            displayedList = displayedList.concat(action.payload[i]);
+          } else {
+            break;
+          }
+        }
+        return { list: displayedList, start: 0 };
+      }
+      case "back": {
+        for (let i = state.start; i < state.start + 3; i++) {
+          if (action.payload[i - 1]) {
+            displayedList = displayedList.concat(action.payload[i - 1]);
+          } else {
+            break;
+          }
+        }
+        return { list: displayedList, start: state.start - 1 };
+      }
+      case "forward": {
+        for (let i = state.start; i < state.start + 3; i++) {
+          if (action.payload[i + 1]) {
+            displayedList = displayedList.concat(action.payload[i + 1]);
+          } else {
+            break;
+          }
+        }
+        return { list: displayedList, start: state.start + 1 };
+      }
+    }
+  }
+};
+
 const AllFollows = () => {
   const [followed, setFollowed] = useState([]);
 
-  const [displayed, setDisplayed] = useState([]);
-
-  const sliderReducer = (state, action) => {
-    if (action.disabled) {
-      return { count: state.count };
-    }
-    switch (action.type) {
-      case "back": {
-        setDisplayed([followed[state.count - 1], followed[state.count], followed[state.count + 1]]);
-        return { count: state.count - 1 };
-      }
-      case "forward": {
-        setDisplayed([followed[state.count + 1], followed[state.count + 2], followed[state.count + 3]]);
-        return { count: state.count + 1 };
-      }
-    }
-  };
-
-  const [state, dispatch] = useReducer(sliderReducer, { count: 0 });
+  const [displayed, dispatch] = useReducer(sliderReducer, { list: [], start: 0 });
 
   const getAllFollows = () => {
     axios
       .post("https://akademia108.pl/api/social-app/follows/allfollows")
       .then((res) => {
         setFollowed(res.data);
-        let tempDisplayed = [];
-        for (let i = 0; i < 3; i++) {
-          if (res.data[i]) {
-            tempDisplayed = tempDisplayed.concat(res.data[i]);
-          } else {
-            break;
-          }
-        }
-        setDisplayed(tempDisplayed);
+        dispatch({ type: "init", payload: res.data });
       })
       .catch((error) => console.log(error));
   };
@@ -63,9 +77,9 @@ const AllFollows = () => {
       <img
         src={ArrowBack}
         alt="arrow back"
-        className={"arrow" + (state.count === 0 ? " disabled" : "")}
-        onClick={() => dispatch({ type: "back", disabled: state.count === 0 })}></img>
-      {displayed.map((user) => {
+        className={"arrow" + (displayed.start === 0 ? " disabled" : "")}
+        onClick={() => dispatch({ type: "back", payload: followed, disabled: displayed.start === 0 })}></img>
+      {displayed.list.map((user) => {
         return (
           <div className="followedUser" key={user.id}>
             <img src={user.avatar_url} alt={user.username + " avatar"}></img>
@@ -79,9 +93,9 @@ const AllFollows = () => {
       <img
         src={ArrowForward}
         alt="arrow forward"
-        className={"arrow" + (state.count + 3 === followed.length || followed.length < 4 ? " disabled" : "")}
+        className={"arrow" + (displayed.start + 3 === followed.length || followed.length < 4 ? " disabled" : "")}
         id="forward"
-        onClick={() => dispatch({ type: "forward", disabled: state.count + 3 === followed.length || followed.length < 4 })}></img>
+        onClick={() => dispatch({ type: "forward", payload: followed, disabled: displayed.start + 3 === followed.length || followed.length < 4 })}></img>
     </main>
   );
 };
