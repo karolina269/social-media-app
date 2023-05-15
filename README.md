@@ -20,3 +20,6 @@ npm install
 npm start
 
 ```
+test user:
+username: adam
+password: 1234
