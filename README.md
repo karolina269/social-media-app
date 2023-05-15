@@ -4,7 +4,7 @@ A social media app in react, routes with React Router and makes requests using a
 
 ## Features
 
-- Sign up and log in
+- Log in and fake sign up
 - Display the latest posts and allow users to load more posts
 - Show follow recommendations
 - Allow users to: add posts, follow other users, like other posts, and delete their own posts
@@ -21,5 +21,5 @@ npm start
 
 ```
 test user:
-username: adam
-password: 1234
+- username: adam
+- password: 1234
